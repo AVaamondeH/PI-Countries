@@ -3,8 +3,6 @@ const { Sequelize } = require("sequelize");
 const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
-const countryModel = require("./models/Country")
-const activityModel = require("./models/Activity")
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
   logging: false, 
@@ -29,9 +27,6 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 //Edit by ALex
-countryModel(sequelize);
-activityModel(sequelize);
-
 const { Country, Activity } = sequelize.models;
 Country.belongsToMany(Activity, { through: 'Country_activities' })
 Activity.belongsToMany(Country, { through: 'Country_activities'})
