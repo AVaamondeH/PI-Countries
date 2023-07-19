@@ -3,12 +3,13 @@ const { Activity, Country } = require("../db")
 const postActivities = async (req, res) => {
     
     try {
-        const { name, difficulty, duration, season, countries } = req.body
+        const { name, type, difficulty, duration, season, countries } = req.body
         
-        if (!name || !difficulty || !duration || !season || !countries.length) throw Error("Faltan datos")
+        if (!name || !type || !difficulty || !duration || !season || !countries.length) throw Error("Faltan datos")
 
         const newActivity = await Activity.create({
                 name: name,
+                type: type,
                 difficulty: difficulty,
                 duration: duration,
                 season: season
@@ -37,3 +38,5 @@ const postActivities = async (req, res) => {
 module.exports = {
     postActivities
 }
+
+/** 5 tipos de actividades, Deportivas, recreativa, cultiral, educativa y ecologica */
