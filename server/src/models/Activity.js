@@ -7,22 +7,31 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        type: {
-            type: DataTypes.STRING,
-            allowNull: false
+            validate: {
+                isAlpha: true,
+                notEmpty: true,
+                len: [2,10],
+            },
         },
         difficulty: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                isAlpha: true,
+                notEmpty: true,
+            },
         },
         duration: {
-            type: DataTypes.STRING,
+            type: DataTypes.TIME,
             allowNull: true,
         },
         season: {   
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                isAlpha: true,
+                notEmpty: true,
+            },
         }
 },
 { timestamps: false });

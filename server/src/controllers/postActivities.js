@@ -3,13 +3,12 @@ const { Activity, Country } = require("../db")
 const postActivities = async (req, res) => {
     
     try {
-        const { name, type, difficulty, duration, season, countries } = req.body
+        const { name, difficulty, duration, season, countries } = req.body
         
-        if (!name || !type || !difficulty || !duration || !season || !countries.length) throw Error("Faltan datos")
+        if (!name || !difficulty || !duration || !season || !countries.length) throw Error("Faltan datos")
 
         const newActivity = await Activity.create({
                 name: name,
-                type: type,
                 difficulty: difficulty,
                 duration: duration,
                 season: season
