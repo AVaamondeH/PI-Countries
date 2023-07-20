@@ -16,8 +16,8 @@ const paginationAndFilterHandler = async (req, res) => {
 
         if(continent && !order && !activity){
             const filter = await getFilter(continent)
+            if (!filter.length) throw Error("Not Found")
             const response = await pagination(page, filter)
-            if (!response.length) throw Error("Not Found")
             return res.status(200).json(response)
         }
         if(!continent && order && !activity){
@@ -28,28 +28,28 @@ const paginationAndFilterHandler = async (req, res) => {
         }
         if (!continent && !order && activity) {
             const filter = await getFilter(null, activity)
+            if (!filter.length) throw Error("Not Found")
             const response = await pagination(page, filter)
-            if (!response.length) throw Error("Not Found")
             return res.status(200).json(response)
         }
         if (continent && order && !activity) {
             const filter = await getFilter(continent)
+            if (!filter.length) throw Error("Not Found")
             const sort = await getOrder(order, filter)
             const response = await pagination(page, sort)
-            if (!response.length) throw Error("Not Found")
             return res.status(200).json(response)
         }
         if (continent && !order && activity) {
             const filter = await getFilter(continent, activity)
+            if (!filter.length) throw Error("Not Found")
             const response = await pagination(page, filter)
-            if (!response.length) throw Error("Not Found")
             return res.status(200).json(response)
         }
         if (continent && order && activity) {
             const filter = await getFilter(continent, activity)
+            if (!filter.length) throw Error("Not Found")
             const sort = await getOrder(order, filter)
             const response = await pagination(page, sort)
-            if (!response.length) throw Error("Not Found")
             return res.status(200).json(response)
         }
         

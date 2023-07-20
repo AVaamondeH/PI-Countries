@@ -1,11 +1,6 @@
 const { Activity, Country } = require("../db")
 
-const postActivities = async (req, res) => {
-    
-    try {
-        const { name, difficulty, duration, season, countries } = req.body
-        
-        if (!name || !difficulty || !duration || !season || !countries.length) throw Error("Faltan datos")
+const postActivities = async (name, difficulty, duration, season, countries) => {
 
         const newActivity = await Activity.create({
                 name: name,
@@ -23,15 +18,9 @@ const postActivities = async (req, res) => {
         });
         await newActivity.setCountries(Associate)
 
-        if (!newActivity) throw Error("")
+        
+        return newActivity
 
-
-        return res.status(200).json(newActivity)
-
-    } catch (error) {
-        if (error.message === "Faltan datos") return res.status(400).json({error: error.message})
-        return res.status(500).json({error: error.message}) 
-    }
 }
 
 module.exports = {

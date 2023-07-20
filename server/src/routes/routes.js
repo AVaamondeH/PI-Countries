@@ -1,18 +1,17 @@
 const { Router } = require("express");
 const router = Router();
-const { getCountries } = require("../controllers/getCountries")
-const { getCountriesById, getCountriesByName } = require("../controllers/getCountriesByIdAndName")
+const { getCountriesByIdHandler } = require("../handlers/getCountriesByIdHandler")
 const { getActivities } = require("../controllers/getActivities")
-const { postActivities } = require("../controllers/postActivities")
+const { postActivitiesHandler } = require("../handlers/postActivitiesHandler")
 const { paginationAndFilterHandler } = require("../handlers/paginationAndFilterHandler")
-const { getOrder} = require("../controllers/getOrder")
+const {getCountriesByNameHandler} = require("../handlers/getCountriesByNameHandler")
+
 
 router.get("/countries", paginationAndFilterHandler)
-router.get("/countries/name", getCountriesByName)
-router.get("/countries/order", getOrder)
-router.get("/countries/:idPais", getCountriesById)
+router.get("/countries/name", getCountriesByNameHandler)
+router.get("/countries/:idPais", getCountriesByIdHandler)
 router.get("/activities", getActivities)
-router.post("/activities", postActivities)
+router.post("/activities", postActivitiesHandler)
 
 
 

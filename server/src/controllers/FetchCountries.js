@@ -1,10 +1,13 @@
 const axios = require("axios");
-const URL = "http://localhost:5000/countries";
+const { DATA_URL } = process.env;
 const { Country } = require("../db")
 
-const fetchCountries = async (req, res) => {
-    try {
-    const { data } = await axios(URL) // Se hace la peticion a la API y se desestructura la data que devuelve axios para trabajarla
+const fetchCountries = async () => {
+    
+    const { data } = await axios(DATA_URL) // Se hace la peticion a la API y se desestructura la data que devuelve axios para trabajarla
+    if (await Country.count() > 0) {   
+        return;
+    }
     await Promise.all(  //Se usa este metodo para esperar que se revuelvan todas las promesas que retorne el map
         data.map(async (country) => {
             let {cca3, name, flags, continents, capital, subregion, area, population } = country
@@ -20,12 +23,7 @@ const fetchCountries = async (req, res) => {
                 population,
             });
         })
-    );
-    console.log("Countries uploaded to database successfully");
-    
-    } catch (error) {
-        console.error(error.message)
-    }
+    );   
 }
 
 module.exports ={ 

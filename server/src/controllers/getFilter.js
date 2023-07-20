@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { Country, Activity } = require("../db")
 const { Op } = require("sequelize");
 
@@ -36,8 +37,10 @@ const getFilter = async (continent, activity) => {
             
             include: Country
         })
-    
-            return activities
+
+        if (!activities.length) return activities
+
+        return activities[0].Countries
     }
 
     if (continent && activity) {
@@ -59,7 +62,10 @@ const getFilter = async (continent, activity) => {
                 }
             }
         });
-            return activities;
+        
+        if (!activities.length) return activities
+
+        return activities[0].Countries;
     }
 
 }
