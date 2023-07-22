@@ -14,24 +14,6 @@ const paginationAndFilterHandler = async (req, res) => {
             return res.status(200).json(response)
         }
 
-        if(continent && !order && !activity){
-            const filter = await getFilter(continent)
-            if (!filter.length) throw Error("Not Found")
-            const response = await pagination(page, filter)
-            return res.status(200).json(response)
-        }
-        if(!continent && order && !activity){
-            const sort = await getOrder(order)
-            const response = await pagination(page, sort)
-            if (!response.length) throw Error("Not Found")
-            return res.status(200).json(response)    
-        }
-        if (!continent && !order && activity) {
-            const filter = await getFilter(null, activity)
-            if (!filter.length) throw Error("Not Found")
-            const response = await pagination(page, filter)
-            return res.status(200).json(response)
-        }
         if (continent && order && !activity) {
             const filter = await getFilter(continent)
             if (!filter.length) throw Error("Not Found")
@@ -39,21 +21,15 @@ const paginationAndFilterHandler = async (req, res) => {
             const response = await pagination(page, sort)
             return res.status(200).json(response)
         }
-        if (continent && !order && activity) {
-            const filter = await getFilter(continent, activity)
-            if (!filter.length) throw Error("Not Found")
-            const response = await pagination(page, filter)
-            return res.status(200).json(response)
-        }
+
         if (continent && order && activity) {
             const filter = await getFilter(continent, activity)
-            if (!filter.length) throw Error("Not Found")
+            if (!filter.length) return res.status(200).json({})
             const sort = await getOrder(order, filter)
             const response = await pagination(page, sort)
             return res.status(200).json(response)
         }
-        
-        
+
     
     } catch (error) {
         switch (error.message) {
@@ -77,3 +53,38 @@ module.exports ={
 necesarios y devolverlos al front
 
 se verifica si se mandan varios filtrados y se ejecutan los controladores correspondientes*/
+
+
+
+        // if(continent && !order && !activity){
+        //     const filter = await getFilter(continent)
+        //     if (!filter.length) throw Error("Not Found")
+        //     const response = await pagination(page, filter)
+        //     return res.status(200).json(response)
+        // }
+        // if(!continent && order && !activity){
+        //     const sort = await getOrder(order)
+        //     const response = await pagination(page, sort)
+        //     if (!response.length) throw Error("Not Found")
+        //     return res.status(200).json(response)    
+        // }
+        // if (!continent && !order && activity) {
+        //     const filter = await getFilter(null, activity)
+        //     if (!filter.length) throw Error("Not Found")
+        //     const response = await pagination(page, filter)
+        //     return res.status(200).json(response)
+        // }
+        // if (continent && !order && activity) {
+        //     const filter = await getFilter(continent, activity)
+        //     if (!filter.length) throw Error("Not Found")
+        //     const response = await pagination(page, filter)
+        //     return res.status(200).json(response)
+        // }
+        // if (!continent && order && activity) {
+        //     const filter = await getFilter(null, activity)
+        //     if (!filter.length) throw Error("Not Found")
+        //     const sort = await getOrder(order, filter)
+        //     const response = await pagination(page, sort)
+        //     return res.status(200).json(response)
+        // }
+        

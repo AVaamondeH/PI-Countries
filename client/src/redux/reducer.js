@@ -1,45 +1,37 @@
-import { COUNTRIES, REMOVE_FAV, FILTER, ORDER } from "./actions"
+import { COUNTRIES, FILTER_AND_ORDER, GET_ACTIVITIES, ORDER } from "./actions"
 
 const initialState = {
     countries: [],
+    totalPages: 0,
+    pageNumbers: [],
+    filteredCountries: [],
+    activities:[],
     //allCharacter: []
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case COUNTRIES:
-            console.log(state)
             return { 
                 ...state, 
-                countries: action.payload
+                countries: action.payload.countriesData,
+                totalPages: action.payload.totalData,
+                pageNumbers: action.payload.enumeration
             };
 
-        // case REMOVE_FAV:
-        //     const remove = state.myFavorites.filter(char => char.id !== Number(action.payload));
-        //     return {
-        //         ...state,
-        //         myFavorites: remove
-        //     }
-
-        case REMOVE_FAV:
-            return { 
+        case FILTER_AND_ORDER:
+            return {
                 ...state, 
-                myFavorites: action.payload,
+                filteredCountries: action.payload.countriesData,
+                totalPages: action.payload.totalData,
+                pageNumbers: action.payload.enumeration,
             };
 
-        case FILTER:
-            if(action.payload === "All") {
-                return {
-                    ...state,
-                    myFavorites: state.allCharacter
-                }
-            } else {
-                let filter = state.allCharacter.filter(char => char.gender === action.payload);
-                    return {
-                        ...state,
-                        myFavorites: filter
-                    }
-            }
+        case GET_ACTIVITIES:
+            return {
+                ...state,
+                activities: action.payload
+            };
         
         
         case ORDER:

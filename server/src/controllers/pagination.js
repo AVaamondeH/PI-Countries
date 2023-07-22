@@ -11,9 +11,26 @@ const pagination = async (pageData, data) => {
 
     const startingIndex = (page - 1) * itemsPerPage;
     const endingIndex = startingIndex + itemsPerPage;
-    const result = data.slice(startingIndex, endingIndex);
+    const countriesData = data.slice(startingIndex, endingIndex);
 
-    return result;
+    const PageEnumeration = (numberPages) => {
+        const pageNumbers = []; // Array vacio que tendra los numeros de pagina a mostrar
+        const maxPageToShow = 5; //maximo de numero de paginas a mostrar
+        let startPage = Math.max(1,  page - Math.floor(maxPageToShow / 2)); 
+        for (let i = 0; i < maxPageToShow && startPage <= numberPages; i++) {
+            pageNumbers.push(startPage);
+            startPage++;
+        }
+        return pageNumbers   
+    }
+
+    const enumeration = PageEnumeration(numberPages);
+
+    return {
+        countriesData,
+        totalData,
+        enumeration
+    };
 };
 
 
@@ -33,3 +50,8 @@ module.exports ={
 // Calculamos el índice de fin para la porción de datos de la página actual
 // Utilizamos el método 'slice()' para obtener la porción de datos correspondiente a la página actual
 // Retornamos la porción de datos correspondiente a la página actual
+
+/* La funcion PageEnumeration nos permite calcular ela cantidad de paginas que se renderizaran
+en el front 
+
+*/
