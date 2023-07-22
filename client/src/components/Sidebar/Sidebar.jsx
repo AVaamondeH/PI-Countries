@@ -7,7 +7,7 @@ import {  useEffect } from "react";
 function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
 
     const dispatch = useDispatch()
-    const { activities } = useSelector(state => state)
+    //const { activities } = useSelector(state => state)
     
     // const handleContinentFilter = (event) => {
     //     const value = event.target.value;
@@ -30,15 +30,15 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
         dispatch(()=> filterAndOrder(page, {order: value}));
     }
 
-    const handleActivity = (event) => {
-        const value = event.target.value;
-                setFiltersAndOrders(filters => ({
-            ...filters,
-            activity: value
-        }));
-        const page = setCurrentPage(1)
-        dispatch(()=> filterAndOrder(page, {activity: value}));
-    }
+    // const handleActivity = (event) => {
+    //     const value = event.target.value;
+    //             setFiltersAndOrders(filters => ({
+    //         ...filters,
+    //         activity: value
+    //     }));
+    //     const page = setCurrentPage(1)
+    //     dispatch(()=> filterAndOrder(page, {activity: value}));
+    // }
 
     useEffect(() => {
         dispatch(getActivities())
@@ -63,7 +63,7 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
                     <option value="dsc">Descendente</option>
                 </select>
 
-                <select name="activity" onChange={handleActivity}>
+                {/* <select name="activity" onChange={handleActivity}>
                 <option value="" >None</option>
                 {activities.map(({id, name}) => {
                     return (
@@ -71,7 +71,7 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
                         <option key={id} value={name}>{name}</option>
                     )
                 })}
-                </select>
+                </select> */}
             </div>
         </> 
         );
