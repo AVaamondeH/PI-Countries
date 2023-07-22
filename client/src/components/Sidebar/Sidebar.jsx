@@ -9,16 +9,16 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
     const dispatch = useDispatch()
     const { activities } = useSelector(state => state)
     
-    const handleContinentFilter = (event) => {
-        const value = event.target.value;
-        setFiltersAndOrders(filters => ({
-            ...filters,
-            continent: value
-        }));
+    // const handleContinentFilter = (event) => {
+    //     const value = event.target.value;
+    //     setFiltersAndOrders(filters => ({
+    //         ...filters,
+    //         continent: value
+    //     }));
 
-        const page = setCurrentPage(1)
-        dispatch(()=> filterAndOrder(page, {continent: value}));
-    }
+    //     const page = setCurrentPage(1)
+    //     dispatch(()=> filterAndOrder(page, {continent: value}));
+    // }
     const handleOrder = (event) => {
         const value = event.target.value;
                 setFiltersAndOrders(filters => ({
@@ -48,7 +48,7 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
     return ( 
         <>
             <div>
-                <select name="continent" onChange={handleContinentFilter}>
+                {/* <select name="continent" onChange={handleContinentFilter}>
                     <option value="All">All</option>
                     <option value="Africa">Africa</option>
                     <option value="Antarctica">Antarctica</option>
@@ -57,7 +57,7 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
                     <option value="North America">North America</option>
                     <option value="South America">South America</option>
                     <option value="Oceania">Oceania</option>
-                </select>
+                </select> */}
                 <select name="order" onChange={handleOrder} >
                     <option value="asc">Ascendente</option>
                     <option value="dsc">Descendente</option>
