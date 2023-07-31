@@ -5,12 +5,11 @@ module.exports = (sequelize) => {
   // defino el modelo
     sequelize.define('Activity', {
         name: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
-                isAlpha: true,
                 notEmpty: true,
-                len: [2,10],
+                len: [2,15],
             },
         },
         difficulty: {

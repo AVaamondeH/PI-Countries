@@ -1,4 +1,4 @@
-// import style from './Home.module.css';
+import style from './Home.module.css';
 import { useState } from 'react';
 import Cards from "../Cards/Cards";
 import Sidebar from "../Sidebar/Sidebar";
@@ -12,15 +12,23 @@ function Home () {
 
     return ( 
         <>
-            <Sidebar
-                setFiltersAndOrders={setFiltersAndOrders}
-                setCurrentPage={setCurrentPage}
-            />
-            <Cards
-                currentPage={currentPage}
-                FiltersAndOrders={FiltersAndOrders}
-                setCurrentPage={setCurrentPage}
-            /> 
+            <div className={style.home_container}>
+
+                <div className={style.sidebar}>
+                    <Sidebar
+                        setFiltersAndOrders={setFiltersAndOrders}
+                        setCurrentPage={setCurrentPage}
+                        FiltersAndOrders={FiltersAndOrders}
+                    />
+                </div>
+                <div className={style.cards_container}>
+                    <Cards
+                        currentPage={currentPage}
+                        FiltersAndOrders={FiltersAndOrders}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </div>
+            </div>
         </>
     );
 }

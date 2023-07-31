@@ -1,44 +1,25 @@
-//import style from './Sidebar.module.css';
+import style from './Sidebar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterAndOrder, getActivities } from '../../redux/actions';
 import {  useEffect } from "react";
 
 // eslint-disable-next-line react/prop-types
-function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
+function Sidebar ({FiltersAndOrders, setCurrentPage, setFiltersAndOrders}) {
 
     const dispatch = useDispatch()
-    //const { activities } = useSelector(state => state)
+    const { activities } = useSelector(state => state)
     
-    // const handleContinentFilter = (event) => {
-    //     const value = event.target.value;
-    //     setFiltersAndOrders(filters => ({
-    //         ...filters,
-    //         continent: value
-    //     }));
-
-    //     const page = setCurrentPage(1)
-    //     dispatch(()=> filterAndOrder(page, {continent: value}));
-    // }
-    const handleOrder = (event) => {
+    const handleClick = (event) => {
         const value = event.target.value;
-                setFiltersAndOrders(filters => ({
-            ...filters,
-            order: value
-        }));
+        const name = event.target.name;
+                setFiltersAndOrders({
+                    ...FiltersAndOrders,
+                    [name]: value
+                });
         
         const page = setCurrentPage(1)
         dispatch(()=> filterAndOrder(page, {order: value}));
     }
-
-    // const handleActivity = (event) => {
-    //     const value = event.target.value;
-    //             setFiltersAndOrders(filters => ({
-    //         ...filters,
-    //         activity: value
-    //     }));
-    //     const page = setCurrentPage(1)
-    //     dispatch(()=> filterAndOrder(page, {activity: value}));
-    // }
 
     useEffect(() => {
         dispatch(getActivities())
@@ -47,31 +28,37 @@ function Sidebar ({setCurrentPage, setFiltersAndOrders}) {
 
     return ( 
         <>
-            <div>
-                {/* <select name="continent" onChange={handleContinentFilter}>
-                    <option value="All">All</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Antarctica">Antarctica</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="North America">North America</option>
-                    <option value="South America">South America</option>
-                    <option value="Oceania">Oceania</option>
-                </select> */}
-                <select name="order" onChange={handleOrder} >
-                    <option value="asc">Ascendente</option>
-                    <option value="dsc">Descendente</option>
-                </select>
+            <div className={style.container} >
+                <div className={style.sidebar}>
+                    <h3>Filter by:</h3>
+                    <select name="continent" onChange={handleClick}>
+                        <option value="All">All</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Antarctica">Antarctica</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="North America">North America</option>
+                        <option value="South America">South America</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                    <h3>Order by:</h3>
+                    <select name="order" onChange={handleClick} >
+                        <option value="asc">Ascendant</option>
+                        <option value="dsc">Descendant</option>
+                        <option value="Hpopu">Highest Population</option>
+                        <option value="Lpopu">Lowest Population</option>
+                    </select>
+                    <h3>Activity:</h3>
+                    <select name="activity" onChange={handleClick}>
+                    <option value="" >None</option>
+                    {activities.map(({id, name}) => {
+                        return (
 
-                {/* <select name="activity" onChange={handleActivity}>
-                <option value="" >None</option>
-                {activities.map(({id, name}) => {
-                    return (
-
-                        <option key={id} value={name}>{name}</option>
-                    )
-                })}
-                </select> */}
+                            <option key={id} value={name}>{name}</option>
+                        )
+                    })}
+                    </select>
+                </div>
             </div>
         </> 
         );

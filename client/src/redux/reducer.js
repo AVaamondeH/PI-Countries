@@ -1,4 +1,4 @@
-import { COUNTRIES, FILTER_AND_ORDER, GET_ACTIVITIES, ORDER } from "./actions"
+import {  FILTER_AND_ORDER, GET_ACTIVITIES, GET_DETAILS } from "./actions"
 
 const initialState = {
     countries: [],
@@ -11,18 +11,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case COUNTRIES:
-            return { 
-                ...state, 
-                countries: action.payload.countriesData,
-                totalPages: action.payload.totalData,
-                pageNumbers: action.payload.enumeration
-            };
 
         case FILTER_AND_ORDER:
             return {
                 ...state, 
-                filteredCountries: action.payload.countriesData,
+                countries: action.payload.countriesData,
                 totalPages: action.payload.totalData,
                 pageNumbers: action.payload.enumeration,
             };
@@ -32,11 +25,18 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 activities: action.payload
             };
+
+    //         case ORDER_BY_COUNTRY:
+    //   const countriesOrdered = state.countriesCopy.sort((a, b) => {
+    //     return actions.payload === "A" ? a.name - b.name : b.name - a.name;
+    //   });
+    //   return {
+    //     ...state,
+    //     countriesCopy: countriesOrdered,
+    //   };
         
         
-        case ORDER:
-            // let result = [];
-            
+        case GET_DETAILS:            
             // if (action.payload === "A") {
             //     result = state.allCharacter.sort((a, b) => a.id - b.id);
             // } 
@@ -52,6 +52,7 @@ const reducer = (state = initialState, action) => {
                             
 
             }
+            
     
         default:
             return {...state}

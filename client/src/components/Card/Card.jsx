@@ -1,14 +1,20 @@
 import style from './Card.module.css';
+import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-function Card ({ name, flagImg, continent }) {
+function Card ({ id, name, flagImg, continent }) {
     return ( 
-    <>
-    <div className={style.card}>
-        <img src={flagImg} alt="Flag" />
-        <h3>{name}</h3>
-        <p>{continent}</p>
-    </div>
+    <>                     
+    <NavLink 
+        to={`/detail/${id}`} 
+        className={style.links}
+    >
+            <div className={style.card}>
+                <img src={flagImg} alt="Flag" />
+                <h3>{name}</h3>
+                <p>{continent}</p>
+            </div>
+    </NavLink>
     </> );
 }
 

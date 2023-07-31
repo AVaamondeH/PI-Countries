@@ -8,7 +8,7 @@ const {getCountriesByNameHandler} = require("../handlers/getCountriesByNameHandl
 
 
 router.get("/countries", paginationAndFilterHandler)
-router.get("/countries/name", getCountriesByNameHandler)
+router.get("/countries/search", getCountriesByNameHandler)
 router.get("/countries/:idPais", getCountriesByIdHandler)
 router.get("/activities", getActivities)
 router.post("/activities", postActivitiesHandler)

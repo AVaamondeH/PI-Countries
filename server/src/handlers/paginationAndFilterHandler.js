@@ -9,8 +9,7 @@ const paginationAndFilterHandler = async (req, res) => {
         const { page, continent, order,  activity } = req.query
         
         if(!continent && !order && !activity) {
-            const countries = await getCountries()
-            const response = await pagination(page, countries)
+            const response = await getCountries()
             return res.status(200).json(response)
         }
 

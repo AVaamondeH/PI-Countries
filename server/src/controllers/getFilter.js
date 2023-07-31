@@ -1,16 +1,12 @@
-const { response } = require("express");
 const { Country, Activity } = require("../db")
+const { getCountries } = require("./getCountries")
 const { Op } = require("sequelize");
 
 const getFilter = async (continent, activity) => {
 
     const continentFilter = async (continent) => {
-
         if(continent === "All") {
-            const countries = await Country.findAll()
-                    countries.sort((country1, country2) => {
-                    return country1.name.localeCompare(country2.name);
-                })
+            const countries = await getCountries()
                 return countries 
         }
 
