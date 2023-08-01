@@ -1,5 +1,16 @@
 import axios from "axios";
 
+export const getAllCountries = () => {
+   const endpoint = `http://localhost:3001/countries`;
+   return async (dispatch) => {
+      const { data } = await axios.get(endpoint)
+         return dispatch({
+            type: 'GET_ALL_COUNTRIES',
+            payload: data,
+         });
+   };
+}
+
 export const filterAndOrder = (page, filters) => {
    const endpoint = `http://localhost:3001/countries?page=${page}`;
    const {continent, order, activity} = filters
@@ -52,17 +63,21 @@ export const getActivities = () => {
    };
 }
 
-export const getDetails = (order) => {
-   return {
-      type: "ORDER",
-      payload: order
-   }
+export const getDetails = () => {
+   const endpoint = `http://localhost:3001/activities`;
+   return async (dispatch) => {
+      const { data } = await axios.get(endpoint)
+         return dispatch({
+            type: 'GET_DETAILS',
+            payload: data,
+         });
+   };
 }
 
+export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const FILTER_AND_ORDER = "FILTER_AND_ORDER";
 export const GET_ACTIVITIES = "GET_ACTIVITIES"
 export const GET_DETAILS = "GET_DETAILS";
-export const ORDER = "ORDER";
 
 
 

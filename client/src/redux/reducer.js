@@ -1,12 +1,11 @@
-import {  FILTER_AND_ORDER, GET_ACTIVITIES, GET_DETAILS } from "./actions"
+import {  GET_ALL_COUNTRIES, FILTER_AND_ORDER, GET_ACTIVITIES, GET_DETAILS } from "./actions"
 
 const initialState = {
     countries: [],
     totalPages: 0,
     pageNumbers: [],
-    filteredCountries: [],
+    allCountries: [],
     activities:[],
-    //allCharacter: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -26,14 +25,11 @@ const reducer = (state = initialState, action) => {
                 activities: action.payload
             };
 
-    //         case ORDER_BY_COUNTRY:
-    //   const countriesOrdered = state.countriesCopy.sort((a, b) => {
-    //     return actions.payload === "A" ? a.name - b.name : b.name - a.name;
-    //   });
-    //   return {
-    //     ...state,
-    //     countriesCopy: countriesOrdered,
-    //   };
+        case GET_ALL_COUNTRIES:
+            return {
+                ...state,
+                allCountries: action.payload,
+            };
         
         
         case GET_DETAILS:            

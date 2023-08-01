@@ -125,8 +125,11 @@ console.log(activity);
   return (
     <div className={style.container}>
     <form onSubmit={handleSubmit} className={style.form_container}>
+      <h2>Create a new activity!</h2>
+      <p>Fields with * cannot be empty</p>
+      
       <label>
-        Name:
+        Name: *
         <input 
             name='name'
             type="text" 
@@ -138,21 +141,30 @@ console.log(activity);
         </div>
       </label>
       <br />
-      <label>
-        Difficulty:
-        <input 
-            name='difficulty'
-            type="text" 
-            value={activity.difficulty} 
-            onChange={handleChange} 
-        />
+      <label className={style.label}>Difficulty: *
+          <select
+            className={style.input}
+            type="number"
+            name="difficulty"
+            value={activity.difficulty}
+            onChange={handleChange}
+          >
+            <option value="" disabled>
+              Select difficulty
+            </option>
+            <option value="1">⭐ ✰ ✰ ✰ ✰</option>
+            <option value="2">⭐⭐ ✰ ✰ ✰</option>
+            <option value="3">⭐⭐⭐ ✰ ✰</option>
+            <option value="4">⭐⭐⭐⭐ ✰</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+          </select>
         <div className={style.error_container}>
           {errors.difficulty && <p>{errors.difficulty}</p>}
         </div>
-      </label>
+        </label>
       <br />
       <label className={style.duration_input}>
-        Duration (HH:mm):
+        Duration (HH:mm): * 
         <input 
           type="number" 
           name="hours"  
@@ -179,7 +191,7 @@ console.log(activity);
       </label>
       <br />
       <label>
-        Season:
+        Season: *
         <select
           name="season"
           value={activity.season}
@@ -197,7 +209,7 @@ console.log(activity);
     </label>
       <br />
       <label>
-  Select countries: 
+  Select countries:
   <input
     type="text"
     value={searchText}
@@ -228,15 +240,17 @@ console.log(activity);
         ))}
     </ul>
   )}
+      <div className={style.error_container}>
+        {errors.countries && <p>{errors.countries}</p>}
+      </div>
 </label>
       <br />
       <div className={style.selectedCountriesText}>
-        <label >Selected countries:</label>
+        <label >Selected countries: *</label>
       </div>
             {/* Texto "Selected Countries" solo si no hay países seleccionados */}
             {selectedCountries.length === 0 && (
         <div className={style.selected_countries}>
-
         </div>
       )}
       { selectedCountries.length > 0 &&
@@ -256,6 +270,7 @@ console.log(activity);
         </div>  
         )} 
       <br />
+      {console.log(errors)}
       <button 
         type="submit"
         disabled={
@@ -264,7 +279,7 @@ console.log(activity);
           !activity.season||
           !activity.countries.length||
           !duration.hours||
-          !duration.muntes ||
+          !duration.minutes ||
           errors.name ||
           errors.difficulty ||
           errors.season||

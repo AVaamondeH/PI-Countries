@@ -3,6 +3,7 @@
     display: flex;
     height: 100%;
     backdrop-filter: blur(10px);
+    margin: 0 10px;
     
     & .sidebar {
       flex: 0 0 250px; /* Ajusta el ancho de la barra lateral según tus necesidades */

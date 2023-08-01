@@ -28,6 +28,11 @@ const Nav = () => {
                     Create Activity
                 </div>  
             </NavLink>
+            <NavLink to="/updateActivity" className={Style.NavLink}>
+                <div className={Style.logout}>
+                    Update Activity
+                </div>  
+            </NavLink>
 
 
         </div>

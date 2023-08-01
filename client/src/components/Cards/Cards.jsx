@@ -28,6 +28,14 @@ function Cards ({currentPage, FiltersAndOrders, setCurrentPage}) {
         setCurrentPage(page);
     };
 
+    const handleFirstPage = () => {
+        setCurrentPage(1);
+    };
+
+    const handleLastPage = () => {
+        setCurrentPage(totalPages);
+    };
+
 
     if(!countries.length) {
         return (
@@ -54,8 +62,12 @@ function Cards ({currentPage, FiltersAndOrders, setCurrentPage}) {
                     />)
                 })}
             </div>
+            {totalPages > 1 && (
             <div className={style.pagination}>
-                        {/* Pagination buttons */}
+            {/* Pagination buttons */}
+                <button onClick={handleFirstPage} disabled={currentPage === 1}>
+                    First Page
+                </button>
                 <button onClick={handlePrevPage} disabled={currentPage === 1}>
                     Previous
                 </button>
@@ -73,7 +85,12 @@ function Cards ({currentPage, FiltersAndOrders, setCurrentPage}) {
                 <button onClick={handleNextPage} disabled={currentPage === totalPages}>
                     Next
                 </button>
+                <button onClick={handleLastPage} disabled={currentPage === totalPages}>
+                    Last Page
+                </button>
             </div>
+            )}
+
     </div>
     
     </>);

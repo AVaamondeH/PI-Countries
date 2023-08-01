@@ -11,9 +11,6 @@ export const validate = (ActivityData, durationData) => {
     if (!/^[A-Za-z\s]+$/.test(name)) errors.name = "This field is only for letters.";
 
     if (!difficulty.length) errors.difficulty = "This field cannot be empty.";
-    if (difficulty.length < 3) errors.difficulty = "Difficulty must be greater than 2 letters.";
-    if (difficulty.length > 10) errors.difficulty = "Name of difficulty to long.";
-    if (!/^[A-Za-z\s]+$/.test(difficulty)) errors.difficulty = "This field is only for letters.";
 
     if (!duration.length) errors.duration = "This field cannot be empty.";
     if (!hours.length) errors.duration = "This field cannot be empty.";

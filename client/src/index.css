@@ -1,12 +1,20 @@
-
-:root {
-  width: 100%;
-  background-image: url("https://c.wallhere.com/photos/3f/e9/1280x768_px_clouds_night-514222.jpg!d");
-  background-size: cover;
-  background-repeat: no-repeat;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-/* :root {
+/*
+:root {
+  width: 100%;
+  background-image: url('../public/resources/bg2.jpg');
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+ :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

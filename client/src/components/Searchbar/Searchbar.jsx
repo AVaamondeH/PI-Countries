@@ -30,7 +30,7 @@ function SearchBar() {
           // Si el valor de búsqueda está vacío, muestra una lista vacía.
           setFilteredCountries([]);
           setErrors(false);
-        }
+        } 
         
       } catch (error) {
         setErrors(true)
