@@ -1,11 +1,18 @@
-import {  GET_ALL_COUNTRIES, FILTER_AND_ORDER, GET_ACTIVITIES, GET_DETAILS } from "./actions"
+import { GET_ALL_COUNTRIES, FILTER_AND_ORDER, GET_ACTIVITIES, UPDATE_FILTERS, GET_ASSOCIATIONS, CURRENT_PAGE } from "./actions"
 
 const initialState = {
     countries: [],
     totalPages: 0,
     pageNumbers: [],
     allCountries: [],
-    activities:[],
+    activities: [],
+    associations: [],
+    currentPage: 1,
+    filters: {
+        continent: 'All',
+        order: 'asc',
+        activity: '',
+    },
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +20,7 @@ const reducer = (state = initialState, action) => {
 
         case FILTER_AND_ORDER:
             return {
-                ...state, 
+                ...state,
                 countries: action.payload.countriesData,
                 totalPages: action.payload.totalData,
                 pageNumbers: action.payload.enumeration,
@@ -30,36 +37,29 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allCountries: action.payload,
             };
-        
-        
-        case GET_DETAILS:            
-            // if (action.payload === "A") {
-            //     result = state.allCharacter.sort((a, b) => a.id - b.id);
-            // } 
-            // if(action.payload === "D") {
-            //     result = state.allCharacter.sort((a, b) => b.id - a.id);
-            // }
+
+        case GET_ASSOCIATIONS:
             return {
                 ...state,
-                myFavorites: 
-                action.payload === "A"
-                ? state.allCharacter.sort((a, b) => a.id - b.id)
-                : state.allCharacter.sort((a, b) => b.id - a.id)
-                            
+                associations: action.payload,
+            };
 
-            }
-            
-    
+        case UPDATE_FILTERS:
+            return {
+                ...state,
+                filters: action.payload,
+            };
+
+        case CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload,
+            };
+
         default:
-            return {...state}
+            return { ...state }
     }
 }
 
 export default reducer;
-
-
-
-
-
-
 

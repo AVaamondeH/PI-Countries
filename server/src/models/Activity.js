@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
-                len: [2,15],
+                len: [2,30],
             },
         },
         difficulty: {
