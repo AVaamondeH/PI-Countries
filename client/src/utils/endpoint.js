@@ -1,2 +1,2 @@
-export const endpoint =  'http://localhost:3001'
+export const endpoint =  'https://countries-server-wtz0.onrender.com'
 
