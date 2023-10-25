@@ -5,7 +5,7 @@ import Detail from "./components/Detail/Detail"
 import Activity from './components/Form/Activity';
 import Navbar from "./components/Navbar/Navbar";
 import Landing from "./components/Landing/Landing";
-import UpdateActivity from "./components/UpdateActivity/UpdateACtivity";
+import UpdateActivity from "./components/UpdateActivity/UpdateActivity";
 import DeleteActivity from "./components/DeleteActivity/DeleteActivity";
 
 function App() {
