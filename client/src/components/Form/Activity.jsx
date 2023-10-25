@@ -7,6 +7,7 @@ import { getAllCountries } from '../../redux/actions';
 import Popup from "../Pop-up/Popup"
 import SuccessMessage from '../Pop-up/Success';
 import ErrorMessage from '../Pop-up/Error';
+import { endpoint } from '../../utils/endpoint';
 
 const Activity = () => {
 
@@ -123,7 +124,7 @@ const Activity = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:3001/activities', activity);
+      const response = await axios.post(`${endpoint}/activities`, activity);
       console.log('Activity created successfully:', response.data);
 
       setShowPopup({

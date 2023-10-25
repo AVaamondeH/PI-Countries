@@ -1,10 +1,11 @@
 const axios = require("axios");
 const { DATA_URL } = process.env;
 const { Country } = require("../db")
+const { countries } =require("../../api/db.json")
 
 const fetchCountries = async () => {
     
-    const { data } = await axios(DATA_URL) // Se hace la peticion a la API y se desestructura la data que devuelve axios para trabajarla
+    const data = countries // Se hace la peticion a la API y se desestructura la data que devuelve axios para trabajarla
     if (await Country.count() > 0) {   
         return;
     }

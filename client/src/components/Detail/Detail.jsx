@@ -5,6 +5,7 @@ import style from './Detail.module.css';
 import Popup from "../Pop-up/Popup"
 import SuccessMessage from '../Pop-up/Success';
 import ErrorMessage from '../Pop-up/Error';
+import { endpoint } from '../../utils/endpoint';
 
 const Detail = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const Detail = () => {
 
   useEffect(() => {
     const getDetail = async (id) => {
-      const { data } = await axios(`http://127.0.0.1:3001/countries/${id}`)
+      const { data } = await axios(`${endpoint}/countries/${id}`)
       if (!data.data.name) {
         return setCountry({});
       }
@@ -38,7 +39,7 @@ const Detail = () => {
 
   const handleConfirmDelete = async (activityId) => {
     try {
-      await axios.delete(`http://127.0.0.1:3001/activities?activityId=${activityId}&countryId=${id}`)
+      await axios.delete(`${endpoint}/activities?activityId=${activityId}&countryId=${id}`)
 
       setShowPopup({
         ...showPopup,
@@ -110,7 +111,7 @@ const Detail = () => {
                     <p>Season: {season}</p>
                   </div>
                   <div className={style.delete}>
-                    <button onClick={() => handleDeleteActivity()}>Delete Activity</button>
+                    <button onClick={() => handleDeleteActivity(id)}>Delete Activity</button>
                   </div>
                 </div>
 

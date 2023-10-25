@@ -22,7 +22,7 @@ const paginationAndFilterHandler = async (req, res) => {
             if (!filter.length) throw Error("Not Found")
             const sort = await getOrder(order, filter)
             const response = await pagination(page, sort)
-            return res.status(200).json(responseObj("Data acquire succesfully", response))
+            return res.status(200).json(response)
         }
 
         if (continent && order && activity) {
@@ -30,7 +30,7 @@ const paginationAndFilterHandler = async (req, res) => {
             if (!filter.length) return res.status(200).json({})
             const sort = await getOrder(order, filter)
             const response = await pagination(page, sort)
-            return res.status(200).json(responseObj("Data acquire succesfully", response))
+            return res.status(200).json(response)
         }
 
     

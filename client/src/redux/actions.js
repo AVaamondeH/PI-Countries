@@ -1,9 +1,9 @@
 import axios from "axios";
+import { endpoint } from "../utils/endpoint";
 
 export const getAllCountries = () => {
-   const endpoint = `http://localhost:3001/countries`;
    return async (dispatch) => {
-      const { data } = await axios.get(endpoint)
+      const { data } = await axios.get(`${endpoint}/countries`)
          return dispatch({
             type: 'GET_ALL_COUNTRIES',
             payload: data.data,
@@ -12,13 +12,13 @@ export const getAllCountries = () => {
 }
 
 export const filterAndOrder = (page, filters) => {
-   const endpoint = `http://localhost:3001/countries?page=${page}`;
+   const endpoint_page = `${endpoint}/countries?page=${page}`;
    const {continent, order, activity} = filters
    
    if (continent && order && !activity) {
       return async (dispatch) => {
-         const { data } = await axios.get(`${endpoint}&continent=${continent}&order=${order}`)
-         let { countriesData, totalData, enumeration} = data.data
+         const { data } = await axios.get(`${endpoint_page}&continent=${continent}&order=${order}`)
+         let { countriesData, totalData, enumeration} = data
          totalData = Math.ceil(totalData / 10)
             return dispatch({
                type: 'FILTER_AND_ORDER',
@@ -29,8 +29,8 @@ export const filterAndOrder = (page, filters) => {
 
    if (continent && order && activity) {
       return async (dispatch) => {
-         const { data } = await axios.get(`${endpoint}&continent=${continent}&order=${order}&activity=${activity}`)
-         if(!Object.keys(data.data).length) {
+         const { data } = await axios.get(`${endpoint_page}&continent=${continent}&order=${order}&activity=${activity}`)
+         if(!Object.keys(data).length) {
             return dispatch({
                type: 'FILTER_AND_ORDER',
                payload: { countriesData: [], 
@@ -38,7 +38,7 @@ export const filterAndOrder = (page, filters) => {
                   enumeration: []},
             });
          }
-         let { countriesData, totalData, enumeration} = data.data
+         let { countriesData, totalData, enumeration} = data   
          totalData = Math.ceil(totalData / 10)
             return dispatch({
                type: 'FILTER_AND_ORDER',
@@ -51,9 +51,9 @@ export const filterAndOrder = (page, filters) => {
 };
 
 export const getActivities = () => {
-   const endpoint = `http://localhost:3001/activities`;
+   const endpoint_data = `${endpoint}/activities`;
    return async (dispatch) => {
-      const { data } = await axios.get(endpoint)
+      const { data } = await axios.get(endpoint_data)
          return dispatch({
             type: 'GET_ACTIVITIES',
             payload: data.data,
@@ -62,9 +62,9 @@ export const getActivities = () => {
 }
 
 export const getAssociations = () => {
-   const endpoint = `http://localhost:3001/associations`;
+   const endpoint_data = `${endpoint}/associations`;
    return async (dispatch) => {
-      const { data } = await axios.get(endpoint)
+      const { data } = await axios.get(endpoint_data)
          return dispatch({
             type: 'GET_ASSOCIATIONS',
             payload: data.data,

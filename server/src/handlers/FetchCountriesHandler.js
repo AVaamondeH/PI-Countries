@@ -10,6 +10,6 @@ const fetchCountriesHandler = async () => {
     }
 }
 
-module.exports ={ 
+module.exports ={  
     fetchCountriesHandler
 };

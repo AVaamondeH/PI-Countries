@@ -4,9 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, 
-  native: false, 
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+  logging: false,
+  native: false,
 });
 
 const basename = path.basename(__filename);
@@ -28,10 +29,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Country, Activity } = sequelize.models;
 Country.belongsToMany(Activity, { through: 'Country_activities' })
-Activity.belongsToMany(Country, { through: 'Country_activities'})
+Activity.belongsToMany(Country, { through: 'Country_activities' })
 
 
 module.exports = {
-  ...sequelize.models, 
+  ...sequelize.models,
   conn: sequelize,
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
 import style from "./Searchbar.module.css"
+import { endpoint } from '../../utils/endpoint';
 
 
 function SearchBar() {
@@ -17,7 +18,7 @@ function SearchBar() {
         // Realiza la solicitud al backend solo si el valor de búsqueda no está vacío.
         if (searchValue.trim() !== '') {
           const encodedSearchValue = encodeURIComponent(searchValue.trim());
-          const { data } = await axios.get(`http://localhost:3001/countries/search?name=${encodedSearchValue}`);
+          const { data } = await axios.get(`${endpoint}/countries/search?name=${encodedSearchValue}`);
           if (data.data.length) {
             setFilteredCountries(data.data);
             setErrors(false); // Si hay resultados, restablece el estado de "countryNotFound"

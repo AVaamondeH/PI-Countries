@@ -6,6 +6,7 @@ import { getActivities } from '../../redux/actions';
 import Popup from "../Pop-up/Popup"
 import SuccessMessage from '../Pop-up/Success';
 import ErrorMessage from '../Pop-up/Error';
+import { endpoint } from '../../utils/endpoint';
 
 
 
@@ -38,7 +39,7 @@ function DeleteActivity() {
     const handleConfirmDelete = async (activityId) => {
         try {
 
-            await axios.delete(`http://127.0.0.1:3001/activities?activityId=${activityId}`)
+            await axios.delete(`${endpoint}/activities?activityId=${activityId}`)
 
             setShowPopup({
                 ...showPopup,

@@ -7,6 +7,7 @@ import axios from 'axios';
 import Popup from "../Pop-up/Popup"
 import SuccessMessage from '../Pop-up/Success';
 import ErrorMessage from '../Pop-up/Error';
+import { endpoint } from '../../utils/endpoint';
 
 const UpdateActivity = () => {
 
@@ -162,7 +163,7 @@ const UpdateActivity = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.put('http://127.0.0.1:3001/activities', activity);
+      const response = await axios.put(`${endpoint}/activities`, activity);
       console.log('Activity created successfully:', response.data);
       
       setShowPopup({
@@ -431,7 +432,7 @@ const UpdateActivity = () => {
               errors.duration
             }
 
-          >Create Activity
+          >Update Activity
 
           </button>
         </div>
@@ -472,12 +473,12 @@ const UpdateActivity = () => {
       {/* Notification */}
       {showPopup.success && (
         <SuccessMessage
-          message="Activity Created successfully!."
+          message="Activity updated successfully!."
         />
       )}
       {showPopup.error && (
         <ErrorMessage
-          message="Error creating activity. Please try again later."
+          message="Error updating activity. Please try again later."
         />
       )}
 

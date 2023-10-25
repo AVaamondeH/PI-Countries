@@ -34,6 +34,7 @@ function Sidebar() {
             order: 'asc',
             activity: '',
         }
+        dispatch(setCurrentPage(1))
         dispatch(updateFilters(reset))
 
         document.getElementById("continent-select").value = "All";
